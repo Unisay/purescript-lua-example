@@ -1,6 +1,6 @@
 # Example project for the purescript-lua
 
-This project exists to demonstrate usage of the `purescript-lua` backend.
+This project exists to demonstrate usage of the [PureScript compiler backend for Lua](https://github.com/Unisay/purescript-lua).
 
 ## How to build
 
@@ -50,5 +50,5 @@ Wrote linked modules to /home/user/purescript-lua/example/main.lua
 ## How to run compiled script
 
 ```sh
-lua -e 'dofile("main.lua").main()'
+lua -e 'dofile("main.lua")'
 ```
