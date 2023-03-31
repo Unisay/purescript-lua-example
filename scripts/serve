@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+echo "NGINX: Listening on port 58080"
+
+nginx -p web/ -e logs/error.log -c conf/nginx.conf

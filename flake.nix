@@ -8,7 +8,7 @@
       url = "github:justinwoo/easy-purescript-nix";
       flake = false;
     };
-    pslua.url = "/home/yura/projects/purescript/purescript-lua/pslua";
+    pslua.url = "github:Unisay/purescript-lua";
   };
 
   outputs = { self, nixpkgs, flake-utils, easyps, pslua }:
@@ -26,6 +26,7 @@
               lua
               luacheck
               nixfmt
+              openresty
               pslua.packages.${system}.default
               purescript
               purs-tidy
