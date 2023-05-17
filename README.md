@@ -1,3 +1,5 @@
+**Disclaimer:** the project is in the "*almost ready to be usable*" state (read: it isn't working as you'd expect it to work), I am finilizing core libs and final optimisations in the backend.
+
 # Example project for the purescript-lua
 
 This project exists to demonstrate usage of the [PureScript compiler backend for Lua](https://github.com/Unisay/purescript-lua).
