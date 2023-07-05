@@ -1,6 +1,5 @@
 { name = "purescript-lua-example"
-, dependencies =
-  [ "lua-control", "lua-console", "lua-effect", "lua-ngx", "lua-prelude" ]
+, dependencies = [ "console", "effect", "lua-ngx", "prelude" ]
 , packages = ./packages.dhall
 , sources = [ "src/**/*.purs", "test/**/*.purs" ]
 , backend =

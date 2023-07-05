@@ -8,7 +8,8 @@
       url = "github:justinwoo/easy-purescript-nix";
       flake = false;
     };
-    pslua.url = "github:Unisay/purescript-lua";
+    # pslua.url = "github:Unisay/purescript-lua";
+    pslua.url = "/home/yura/projects/purescript/purescript-lua/purescript-lua";
   };
 
   outputs = { self, nixpkgs, flake-utils, easyps, pslua }:
