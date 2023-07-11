@@ -8,7 +8,6 @@
       url = "github:justinwoo/easy-purescript-nix";
       flake = false;
     };
-    # pslua.url = "github:Unisay/purescript-lua";
     pslua.url = "github:Unisay/purescript-lua";
   };
 
