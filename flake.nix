@@ -24,7 +24,7 @@
               nixfmt
               openresty
               pslua.packages.${system}.default
-              epkgs.purs-0_15_10
+              epkgs.purs-0_15_15
               epkgs.purs-tidy
               epkgs.spago
             ];

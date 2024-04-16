@@ -1,48 +1,44 @@
 local Prim_I_undefined = nil
 local function _S___runtime_lazy(name)
-  return function(init)
-    return function()
-      local state = 0
-      local val = nil
-      if state == 2 then
-        return val
-      else
-        if state == 1 then
-          return error(name .. " was needed before it finished initializing")
-        else
-          state = 1
-          val = init()
-          state = 2
-          return val
-        end
-      end
-    end
-  end
-end
-local Effect_I_foreign = (function()
-  return {
-
-    pureE = function(a)
+       return function(init)
+         return function()
+           local state = 0
+           local val = nil
+           if state == 2 then
+             return val
+           else
+             if state == 1 then
+               return error(name .. " was needed before it finished initializing")
+             else
+               state = 1
+               val = init()
+               state = 2
+               return val
+             end
+           end
+         end
+       end
+     end
+local Effect_I_foreign = {
+  pureE = function(a)
       return function()
         return a
       end
-    end
-
-    , bindE = function(a)
+    end,
+  bindE = function(a)
       return function(f)
         return function()
           return f(a())()
         end
       end
-    end
-
-    , untilE = function(f)
+    end,
+  untilE = function(f)
       return function()
-        while not f() do end
+        while not f() do
+        end
       end
-    end
-
-    , whileE = function(f)
+    end,
+  whileE = function(f)
       return function(a)
         return function()
           while f() do
@@ -50,9 +46,8 @@ local Effect_I_foreign = (function()
           end
         end
       end
-    end
-
-    , forE = function(lo)
+    end,
+  forE = function(lo)
       return function(hi)
         return function(f)
           return function()
@@ -62,9 +57,8 @@ local Effect_I_foreign = (function()
           end
         end
       end
-    end
-
-    , foreachE = function(as)
+    end,
+  foreachE = function(as)
       return function(f)
         return function()
           for i, v in ipairs(as) do
@@ -73,51 +67,47 @@ local Effect_I_foreign = (function()
         end
       end
     end
-
-  }
-end)()
-local Lua_Ngx_Http_Status_I_foreign = (function()
-  return {
-      continue = ngx.HTTP_CONTINUE
-      , switchingProtocols = ngx.HTTP_SWITCHING_PROTOCOLS
-      , ok = ngx.HTTP_OK
-      , created = ngx.HTTP_CREATED
-      , accepted = ngx.HTTP_ACCEPTED
-      , noContent = ngx.HTTP_NO_CONTENT
-      , partialContent = ngx.HTTP_PARTIAL_CONTENT
-      , specialResponse = ngx.HTTP_SPECIAL_RESPONSE
-      , movedPermanently = ngx.HTTP_MOVED_PERMANENTLY
-      , movedTemporarily = ngx.HTTP_MOVED_TEMPORARILY
-      , seeOther = ngx.HTTP_SEE_OTHER
-      , notModified = ngx.HTTP_NOT_MODIFIED
-      , temporaryRedirect = ngx.HTTP_TEMPORARY_REDIRECT
-      , permanentRedirect = ngx.HTTP_PERMANENT_REDIRECT
-      , badRequest = ngx.HTTP_BAD_REQUEST
-      , unauthorized = ngx.HTTP_UNAUTHORIZED
-      , paymentRequired = ngx.HTTP_PAYMENT_REQUIRED
-      , forbidden = ngx.HTTP_FORBIDDEN
-      , notFound = ngx.HTTP_NOT_FOUND
-      , notAllowed = ngx.HTTP_NOT_ALLOWED
-      , notAcceptable = ngx.HTTP_NOT_ACCEPTABLE
-      , requestTimeout = ngx.HTTP_REQUEST_TIMEOUT
-      , conflict = ngx.HTTP_CONFLICT
-      , gone = ngx.HTTP_GONE
-      , upgradeRequired = ngx.HTTP_UPGRADE_REQUIRED
-      , tooManyRequests = ngx.HTTP_TOO_MANY_REQUESTS
-      , close = ngx.HTTP_CLOSE
-      , illegal = ngx.HTTP_ILLEGAL
-      , internalServerError = ngx.HTTP_INTERNAL_SERVER_ERROR
-      , notImplemented = ngx.HTTP_NOT_IMPLEMENTED
-      , methodNotImplemented = ngx.HTTP_METHOD_NOT_IMPLEMENTED
-      , badGateway = ngx.HTTP_BAD_GATEWAY
-      , serviceUnavailable = ngx.HTTP_SERVICE_UNAVAILABLE
-      , gatewayTimeout = ngx.HTTP_GATEWAY_TIMEOUT
-      , versionNotSupported = ngx.HTTP_VERSION_NOT_SUPPORTED
-      , insufficientStorage = ngx.HTTP_INSUFFICIENT_STORAGE
-      , get = function() return ngx.status end
-      , set = function(status) return function() ngx.status = status end end
-  }
-end)()
+}
+local Lua_Ngx_Http_Status_I_foreign = {
+  continue = ngx.HTTP_CONTINUE,
+  switchingProtocols = ngx.HTTP_SWITCHING_PROTOCOLS,
+  ok = ngx.HTTP_OK,
+  created = ngx.HTTP_CREATED,
+  accepted = ngx.HTTP_ACCEPTED,
+  noContent = ngx.HTTP_NO_CONTENT,
+  partialContent = ngx.HTTP_PARTIAL_CONTENT,
+  specialResponse = ngx.HTTP_SPECIAL_RESPONSE,
+  movedPermanently = ngx.HTTP_MOVED_PERMANENTLY,
+  movedTemporarily = ngx.HTTP_MOVED_TEMPORARILY,
+  seeOther = ngx.HTTP_SEE_OTHER,
+  notModified = ngx.HTTP_NOT_MODIFIED,
+  temporaryRedirect = ngx.HTTP_TEMPORARY_REDIRECT,
+  permanentRedirect = ngx.HTTP_PERMANENT_REDIRECT,
+  badRequest = ngx.HTTP_BAD_REQUEST,
+  unauthorized = ngx.HTTP_UNAUTHORIZED,
+  paymentRequired = ngx.HTTP_PAYMENT_REQUIRED,
+  forbidden = ngx.HTTP_FORBIDDEN,
+  notFound = ngx.HTTP_NOT_FOUND,
+  notAllowed = ngx.HTTP_NOT_ALLOWED,
+  notAcceptable = ngx.HTTP_NOT_ACCEPTABLE,
+  requestTimeout = ngx.HTTP_REQUEST_TIMEOUT,
+  conflict = ngx.HTTP_CONFLICT,
+  gone = ngx.HTTP_GONE,
+  upgradeRequired = ngx.HTTP_UPGRADE_REQUIRED,
+  tooManyRequests = ngx.HTTP_TOO_MANY_REQUESTS,
+  close = ngx.HTTP_CLOSE,
+  illegal = ngx.HTTP_ILLEGAL,
+  internalServerError = ngx.HTTP_INTERNAL_SERVER_ERROR,
+  notImplemented = ngx.HTTP_NOT_IMPLEMENTED,
+  methodNotImplemented = ngx.HTTP_METHOD_NOT_IMPLEMENTED,
+  badGateway = ngx.HTTP_BAD_GATEWAY,
+  serviceUnavailable = ngx.HTTP_SERVICE_UNAVAILABLE,
+  gatewayTimeout = ngx.HTTP_GATEWAY_TIMEOUT,
+  versionNotSupported = ngx.HTTP_VERSION_NOT_SUPPORTED,
+  insufficientStorage = ngx.HTTP_INSUFFICIENT_STORAGE,
+  get = function() return ngx.status end,
+  set = function(status) return function() ngx.status = status end end
+}
 local Control_Applicative_I_pure = function(dict) return dict.pure end
 local Control_Bind_I_bind = function(dict) return dict.bind end
 local Effect_I_monadEffect
@@ -141,11 +131,9 @@ Effect_I__S___lazy_functorEffect = _S___runtime_lazy("functorEffect")(function( 
   return {
     map = (function(dictApplicative)
       return function(f)
-        return function(a)
-          return (function(dict)
-            return dict.apply
-          end)(dictApplicative.Apply0(Prim_I_undefined))(Control_Applicative_I_pure(dictApplicative)(f))(a)
-        end
+        return (function(dict)
+          return dict.apply
+        end)(dictApplicative.Apply0(Prim_I_undefined))(Control_Applicative_I_pure(dictApplicative)(f))
       end
     end)(Effect_I_applicativeEffect)
   }
@@ -168,9 +156,7 @@ Effect_I__S___lazy_applyEffect = _S___runtime_lazy("applyEffect")(function( unus
   }
 end)
 return (function(dict) return dict.discard end)({
-  discard = function(dictBind) return Control_Bind_I_bind(dictBind) end
+  discard = Control_Bind_I_bind
 })(Effect_I_bindEffect)(Lua_Ngx_Http_Status_I_foreign.set(Lua_Ngx_Http_Status_I_foreign.ok))(function( unused7 )
-  return ((function()
-    return { say = function(msg) return function() ngx.say(msg) end end }
-  end)()).say("Hello from \"PureScript/Lua\"!")
+  return (function(msg) return function() ngx.say(msg) end end)("Hello from \"PureScript/Lua\"!")
 end)()

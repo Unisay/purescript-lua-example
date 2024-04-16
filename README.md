@@ -24,19 +24,8 @@ The project relies on `nix` to build dependencies.
 ```sh
 $ build
 Building...
-[ 1 of 60] Compiling Type.Proxy
-[ 3 of 60] Compiling Data.Unit
-[ 2 of 60] Compiling Data.Void
-[ 4 of 60] Compiling Record.Unsafe
-[ 5 of 60] Compiling Data.NaturalTransformation
-[ 6 of 60] Compiling Control.Semigroupoid
-[ 7 of 60] Compiling Data.Boolean
-... elided ...
-[58 of 60] Compiling Main
-[59 of 60] Compiling Effect.Class.Console
-[60 of 60] Compiling Test.Main
-Compiling modules:
-Wrote linked modules to /home/user/projects/purescript-lua/example/web/main.lua
+PS Lua: compiling ...
+Wrote linked modules to /home/yura/projects/purescript/purescript-lua/example/web/main.lua
 ```
 
 1. Open other terminal for serving content with Nginx, run:
@@ -58,6 +47,21 @@ nginx: [alert] lua_code_cache is off; this will hurt performance in web/conf/ngi
 but instead will re-read it from disk upon every HTTP request, which is exactly
 what we want in the development mode: it allows to re-build PS sources in the first
 terminal and not to restart nginx in order to see the changes.
+
+1. Open browser and navigate to http://localhost:58080
+or use `httpie`:
+
+```sh
+http :58080
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: text/html
+Date: Tue, 16 Apr 2024 07:58:23 GMT
+Server: openresty/1.21.4.3
+Transfer-Encoding: chunked
+
+Hello from "PureScript/Lua"!
+```
 
 ## How to run a compiled script
 
