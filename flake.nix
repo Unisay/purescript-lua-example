@@ -13,15 +13,18 @@
       let
         epkgs = easyps.packages.${system};
         pkgs = nixpkgs.legacyPackages.${system};
-        lpkgs = pkgs.lua53Packages;
+        lpkgs = pkgs.lua51Packages;
       in {
         devShell = pkgs.mkShell {
           buildInputs = with pkgs;
             with lpkgs; [
               dhall
+              dhall-lsp-server
+              httpie
               lua
               luacheck
-              nixfmt
+              nil
+              nixfmt-rfc-style
               openresty
               pslua.packages.${system}.default
               epkgs.purs-0_15_15
